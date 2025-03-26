@@ -91,6 +91,6 @@ class UserTasksView(APIView):
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         
-        tasks = user.assigned_tasks.all()
+        tasks = user.tasks.all()
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
